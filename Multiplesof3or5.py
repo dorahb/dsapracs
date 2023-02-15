@@ -7,4 +7,4 @@ def solution(number):
             sum += i
     return sum
 
-print(solution(10))
+print(solution(20))
