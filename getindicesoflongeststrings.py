@@ -1,52 +1,38 @@
-def get_indices_of_largest_item(l):
-    """ Returns all indices at which the largest item in a list of items appears """
+def get_indices_of_longest_strings(l):
+    """ Returns all indices at which the longest strings in a list appear """
+    
     if l == []:
-       return []
-       
-   
-    """   largest_item = l[0]
-
-   for item in l:
-        if item > largest_item:
-            largest_item = item
-
-    indices = []
-             
-               for (idx,item) in enumerate(l):
-        if item == largest_item:
-            indices.append(idx)
-
-            return indices
-            
-            """
-
-
-   
+        return []
+    
+    '''longest_strings = max(len(item) for item in l)
+    
     indices = []
     
     for (idx,item) in enumerate(l):
-        if item == max(l):
-            indices.append(idx)
+        if len(item) == longest_strings:
+            indices.append(idx) '''
     
+
+
+
+    indices = []
+    
+    for (idx,item) in enumerate(l):
+        if len(item) == max(len(item)for item in l):
+            indices.append(idx)
+
     return indices
-
-
-
-
-
-
             
             
 TEST_CASES = [
     # Add more cases here if needed:
-    ([1, 3, 2], [1]),
-    ([3, 1, 3], [0, 2]),
+    (['hi', 'hello', 'bye'], [1]),
+    (['hi', 'hi', 'I'], [0, 1]),
+    (['hi', 'yo', 'I'], [0, 1]),
+    ([''], [0]),
     ([], []),
-    ([3,3,3],[0,1,2]),
-    ([-3,-2,-1],[2]),
-    ([-5,0],[1])
+    (['hi', 'yo', 'ye'], [0,1,2])
 
-    
 ]
 
 ##### IGNORE THE STUFF BELOW THIS LINE 
@@ -55,7 +41,7 @@ def run_tests(test_cases):
     passed_all = True
     for idx,(l, expected) in enumerate(test_cases):
         try:
-            actual = get_indices_of_largest_item(l)
+            actual = get_indices_of_longest_strings(l)
         except Exception as e:
             print(f'Failed test #{idx + 1} with exception {sys.exc_info()}')
             passed_all = False 
@@ -69,4 +55,3 @@ def run_tests(test_cases):
         
         
 run_tests(TEST_CASES)
-
