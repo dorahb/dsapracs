@@ -4,6 +4,9 @@ def get_indices_of_longest_strings(l):
     if l == []:
         return []
     
+
+    ''''''
+    
     '''longest_strings = max(len(item) for item in l)
     
     indices = []
@@ -12,9 +15,6 @@ def get_indices_of_longest_strings(l):
         if len(item) == longest_strings:
             indices.append(idx) '''
     
-
-
-
     indices = []
     
     for (idx,item) in enumerate(l):

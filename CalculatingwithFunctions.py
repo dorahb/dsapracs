@@ -59,4 +59,4 @@ def minus(number): #your code here
 def times(number): #your code here
     return lambda x : x * number
 def divided_by(number): #your code here
-    return lambda x : x / number
+    return lambda x : x // number
