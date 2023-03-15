@@ -11,6 +11,7 @@ def find_longest_strings(grid):
 
     if my_list == []:
         return None
+    
     longest_strings = max(my_list, key = len)
 
     return longest_strings
