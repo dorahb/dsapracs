@@ -21,7 +21,7 @@ def get_string(l):
   
 '''current_list = l
 while True:
-    
+        
     if type(current_list) == list:
         if len(current_list)>0:
             current_list = current_list[0]

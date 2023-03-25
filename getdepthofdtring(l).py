@@ -15,9 +15,26 @@ def get_depth_of_string(l):
     the square brackets and quotes, e.g. `str(l).replace('[', '').replace(']', '').replace("'", '')`
     For the purpose of this exercise, DO NOT cast l to a string! 
     """
-    raise NotImplementedError
+    current_list = l
+    depth = 0
+    while True:
+        if type(current_list) == list:
+            if len(current_list)>0:
+                current_list = current_list[0]
+                depth += 1 
+            else:
+                return None
+        if type(current_list)==str:
+            return  depth
         
-            
+    """"    for item in l:
+        if isinstance(item,str):
+            return 1
+        elif isinstance(item,list):
+            depth = get_depth_of_string(item)
+                return depth +1
+
+        """         
             
             
 TEST_CASES = [
