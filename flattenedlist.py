@@ -4,6 +4,18 @@ def flatten_list(l):
     Takes an arbitrarily nested list and returns a flattened version of that list.
     """
 
+    """"    flattened_list = []
+    
+    for item in l:
+        if type(item) == str:
+            flattened_list.append(item)
+        elif type(item) == list:
+            print(flattened_list)
+            flattened_list += flatten_list(item)
+    return flattened_list
+
+        """
+
 """"    flattened_list = []
     current_list = l
    
