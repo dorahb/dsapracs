@@ -20,19 +20,19 @@ def find_x(rows):
         ]
     
     """
-''' for (index,row) in enumerate(rows):
+    for (index,row) in enumerate(rows):
         for (idx,item) in enumerate(row):
                 if item == 'X': 
-                    return index,idx'''
+                    return index,idx
                 
-row_num = -1
-for row in rows:
-    row_num +=1
-    col_num= -1
-    for item in row:
-        col_num +=1
-        if item == 'X':
-            return(row_num,col_num)
+# row_num = -1
+# for row in rows:
+#     row_num +=1
+#     col_num= -1
+#     for item in row:
+#         col_num +=1
+#         if item == 'X':
+#             return(row_num,col_num)
             
             
 TEST_CASES = [

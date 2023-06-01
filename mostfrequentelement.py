@@ -5,7 +5,40 @@ def get_most_frequent_element(l):
     there is only one such element, i.e.
     you will not see a list like [2, 2, 1, 1]
     """
-    raise NotImplementedError
+    # if not l:
+    #     return None
+    
+    # frequency = {}
+    # for element in l:
+    #     if element in frequency:
+    #         frequency[element] += 1
+    #     else:
+    #         frequency[element] = 1
+
+    if not l:
+        return None
+        
+    frequency = {}
+    for element in l:
+        if element in frequency:
+            frequency[element] += 1
+        else:
+            frequency[element] = 1
+    
+    sorted_frequency = sorted(frequency.items(), key=lambda x:x[1])[-1][0]
+    
+    return sorted_frequency
+
+    # most_frequent_element = None
+    # max_frequency = 0
+    # for element, count in frequency.items():
+    #     if count > max_frequency:
+    #         most_frequent_element = element
+    #         max_frequency = count
+
+    # return most_frequent_element
+
+
  
 TEST_CASES = [
     # Add more cases here if needed:
