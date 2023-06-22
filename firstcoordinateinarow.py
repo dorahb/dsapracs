@@ -21,7 +21,9 @@ def find_x(rows):
     
     """
     for (index,row) in enumerate(rows):
+        print(index,row)
         for (idx,item) in enumerate(row):
+                print(idx,item)
                 if item == 'X': 
                     return index,idx
                 
