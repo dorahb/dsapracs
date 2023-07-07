@@ -95,7 +95,7 @@ def endpoint_with_longest_ave_request_time(logs):
 average = endpoint_with_longest_ave_request_time(LOGS)
 print(average)
 
-
+[]
     
 TEST_CASES = [
     # Add more cases here if needed:

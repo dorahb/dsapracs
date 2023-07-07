@@ -24,62 +24,134 @@ Ticket ID,Customer Name,Customer Email,Customer Age,Product Purchased,Date of Pu
 """
 
 
-rows = DATA1.strip().split('\n')
-title = rows[0]   
-rest_of_data = rows[1:]
+# rows = DATA1.strip().split('\n')
+# title = rows[0]   
+# rest_of_data = rows[1:]
 
-parsed_data = []
+# parsed_data = []
 
-for row in rest_of_data:
-    row_keys = title.split(',')
-    row_values = row.split(',')
-    row_dict = dict(zip(row_keys, row_values))
-    parsed_data.append(row_dict)
-# print(parsed_data)
+# for row in rest_of_data:
+#     row_keys = title.split(',')
+#     row_values = row.split(',')
+#     row_dict = dict(zip(row_keys, row_values))
+#     parsed_data.append(row_dict)
+# # print(parsed_data)
 
-# (1) What is the most common ticket type in the data set?
+# # (1) What is the most common ticket type in the data set?
 
-ticket_types_frequency = {}
+# ticket_types_frequency = {}
 
-for row in parsed_data:
-    ticket_type = row['Ticket Type']
-    if ticket_type in ticket_types_frequency:
-        ticket_types_frequency[ticket_type] += 1
-    else:
-        ticket_types_frequency[ticket_type] = 1
+# for row in parsed_data:
+#     ticket_type = row['Ticket Type']
+#     if ticket_type in ticket_types_frequency:
+#         ticket_types_frequency[ticket_type] += 1
+#     else:
+#         ticket_types_frequency[ticket_type] = 1
   
-most_common_ticket_type = max(ticket_types_frequency, key=lambda x: ticket_types_frequency[x])
-print('The most common ticket type is:', most_common_ticket_type)
+# most_common_ticket_type = max(ticket_types_frequency, key=lambda x: ticket_types_frequency[x])
+# print('The most common ticket type is:', most_common_ticket_type)
    
     
 
+# # (2) What are the IDs of the tickets that are still unresolved?
+
+# ids_of_unresolved_tickets = []
+
+# for row in parsed_data:
+#     ticket_id = row['Ticket ID']
+#     ticket_status = row ['Ticket Status']
+#     if ticket_status != 'Closed':
+#         ids_of_unresolved_tickets.append(ticket_id)
+
+# print("The IDs of the tickets that are still unresolved are:", ids_of_unresolved_tickets)
+
+
+# # (3) Excluding tickets with no first response, what is the average first response time for "critical" priority tickets?
+
+# tickets_response_time = 0
+# tickets_count = 0
+
+# for row in parsed_data:
+#     first_response_time = row ['First Response Time']
+#     ticket_priority = row['Ticket Priority']
+    
+#     if first_response_time:
+#         if ticket_priority == 'Critical':
+#             tickets_response_time +=1
+#             tickets_count +=1
+        
+# if tickets_count > 0:
+#     average_first_response_time = tickets_response_time/tickets_count
+#     print('The average first response time for critical priority tickets', average_first_response_time)
+
+
+def extract_customer_support_ticket(dataset):
+    rows = dataset.strip().split('\n')
+    title = rows[0]
+    rest_of_data = rows[1:]
+
+    parsed_data = []
+
+    for row in rest_of_data:
+        row_keys = title.split(',')
+        row_values = row.split(',')
+        row_dict = dict(zip(row_keys, row_values))
+        parsed_data.append(row_dict)
+
+    return parsed_data
+    
+# (1) What is the most common ticket type in the data set?
+
+def most_common_ticket_type(dataset):
+    ticket_types_frequency = {}
+
+    for row in dataset:
+        ticket_type = row['Ticket Type']
+        if ticket_type in ticket_types_frequency:
+            ticket_types_frequency[ticket_type] += 1
+        else:
+            ticket_types_frequency[ticket_type] = 1
+
+    most_common_ticket_type = max(ticket_types_frequency, key=lambda x: ticket_types_frequency[x])
+    return most_common_ticket_type
+
+common_ticket = most_common_ticket_type(extract_customer_support_ticket(DATA1))
+print('The most common ticket type is:',common_ticket)
+
 # (2) What are the IDs of the tickets that are still unresolved?
 
-ids_of_unresolved_tickets = []
+def unresolved_ticket_ids(dataset):
+    ids_of_unresolved_tickets = []
 
-for row in parsed_data:
-    ticket_id = row['Ticket ID']
-    ticket_status = row ['Ticket Status']
-    if ticket_status != 'Closed':
-        ids_of_unresolved_tickets.append(ticket_id)
+    for row in dataset:
+        ticket_id = row['Ticket ID']
+        ticket_status = row['Ticket Status']
+        if ticket_status != 'Closed':
+            ids_of_unresolved_tickets.append(ticket_id)
 
-print("The IDs of the tickets that are still unresolved are:", ids_of_unresolved_tickets)
+    return ids_of_unresolved_tickets
 
+unresolved = unresolved_ticket_ids(extract_customer_support_ticket(DATA1))
+print("The IDs of the tickets that are still unresolved are:",unresolved)
 
 # (3) Excluding tickets with no first response, what is the average first response time for "critical" priority tickets?
 
-tickets_response_time = 0
-tickets_count = 0
+def average_first_response_time(dataset):
+    tickets_response_time = 0
+    tickets_count = 0
 
-for row in parsed_data:
-    first_response_time = row ['First Response Time']
-    ticket_priority = row['Ticket Priority']
+    for row in dataset:
+        first_response_time = row ['First Response Time']
+        ticket_priority = row['Ticket Priority']
     
-    if first_response_time:
-        if ticket_priority == 'Critical':
-            tickets_response_time +=1
-            tickets_count +=1
+        if first_response_time:
+            if ticket_priority == 'Critical':
+                tickets_response_time +=1
+                tickets_count +=1
         
-if tickets_count > 0:
-    average_first_response_time = tickets_response_time/tickets_count
-    print('The average first response time for critical priority tickets', average_first_response_time)
+    if tickets_count > 0:
+        average_first_response_time = tickets_response_time/tickets_count
+        return average_first_response_time
+        
+average = average_first_response_time(extract_customer_support_ticket(DATA1))
+print('The average first response time for critical priority tickets:',average)
