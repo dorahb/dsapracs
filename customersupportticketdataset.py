@@ -24,6 +24,12 @@ Ticket ID,Customer Name,Customer Email,Customer Age,Product Purchased,Date of Pu
 """
 
 
+DATA = """
+Ticket ID,When Created, Customer Name,Customer Email,Customer Age,Product Purchased,Date of Purchase,Ticket Type,Ticket Subject,Ticket Status,Ticket Priority,Ticket Channel,First Response Time,Time to Resolution,Customer Satisfaction Rating
+1,2023-06-01 11:15:32,Marisa Obrien,carrollallison@example.com,32,GoPro Hero,2021-03-22,Technical issue,Product setup,Pending Customer Response,Critical,Social media,2023-06-01 12:15:36,,
+2,2023-06-01 15:12:28,Jessica Rios,clarkeashley@example.com,42,LG Smart TV,2021-05-22,Technical issue,Peripheral compatibility,Pending Customer Response,Critical,Chat,2023-06-01 16:45:38,,"""
+
+
 # rows = DATA1.strip().split('\n')
 # title = rows[0]   
 # rest_of_data = rows[1:]
@@ -136,7 +142,7 @@ print("The IDs of the tickets that are still unresolved are:",unresolved)
 
 # (3) Excluding tickets with no first response, what is the average first response time for "critical" priority tickets?
 
-def average_first_response_time(dataset):
+'''def average_first_response_time(dataset):
     tickets_response_time = 0
     tickets_count = 0
 
@@ -154,4 +160,48 @@ def average_first_response_time(dataset):
         return average_first_response_time
         
 average = average_first_response_time(extract_customer_support_ticket(DATA1))
-print('The average first response time for critical priority tickets:',average)
+print('The average first response time for critical priority tickets:',average)'''
+
+
+
+# (3) Excluding tickets with no first response, what is the average first response time for "critical" priority tickets?
+
+def average_first_response_time(dataset):
+    tickets_first_response_time = 0
+    tickets_count = 0
+
+    for row in dataset:
+        
+        first_response_time = row ['First Response Time']
+        first_response_date_and_time = first_response_time.split()
+        first_response_time_date = first_response_date_and_time[0]
+        first_response_exact_time = first_response_date_and_time[1]
+
+        response_time = first_response_exact_time.split(':')
+        response_time_in_seconds = ( int(response_time[0])*3600 + int(response_time[1]) * 60 + int(response_time[2]))
+
+        when_ticket_was_created = row['When Created']
+        date_and_time_when_created = when_ticket_was_created.split()
+        date_when_created = date_and_time_when_created[0]
+        time_when_created = date_and_time_when_created[1]
+
+        creation_time = time_when_created.split(':')
+        creation_time_in_seconds = ( int(creation_time[0]) * 3600 + int(creation_time[1])*60 + int(creation_time[2]))
+
+        ticket_response_time = response_time_in_seconds - creation_time_in_seconds
+
+        ticket_priority = row['Ticket Priority']
+    
+        if first_response_time:
+            if ticket_priority == 'Critical':
+
+                tickets_first_response_time += ticket_response_time
+                tickets_count +=1
+        
+    if tickets_count > 0:
+        average_first_response_time = tickets_first_response_time/tickets_count
+        return average_first_response_time
+        
+        
+average = average_first_response_time(extract_customer_support_ticket(DATA))
+print('The average first response time for critical priority tickets:',average, 'seconds')
