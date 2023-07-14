@@ -165,37 +165,27 @@ print('The average first response time for critical priority tickets:',average)'
 
 
 # (3) Excluding tickets with no first response, what is the average first response time for "critical" priority tickets?
+from datetime import datetime
 
 def average_first_response_time(dataset):
     tickets_first_response_time = 0
     tickets_count = 0
 
     for row in dataset:
-        
         first_response_time = row ['First Response Time']
-        first_response_date_and_time = first_response_time.split()
-        first_response_time_date = first_response_date_and_time[0]
-        first_response_exact_time = first_response_date_and_time[1]
-
-        response_time = first_response_exact_time.split(':')
-        response_time_in_seconds = ( int(response_time[0])*3600 + int(response_time[1]) * 60 + int(response_time[2]))
-
+        parsed_first_response_time = datetime.strptime(first_response_time, '%Y-%m-%d %H:%M:%S')
         when_ticket_was_created = row['When Created']
-        date_and_time_when_created = when_ticket_was_created.split()
-        date_when_created = date_and_time_when_created[0]
-        time_when_created = date_and_time_when_created[1]
+        parsed_when_ticket_was_created = datetime.strptime(when_ticket_was_created,'%Y-%m-%d %H:%M:%S' )
 
-        creation_time = time_when_created.split(':')
-        creation_time_in_seconds = ( int(creation_time[0]) * 3600 + int(creation_time[1])*60 + int(creation_time[2]))
+        time_difference = parsed_first_response_time - parsed_when_ticket_was_created
+        seconds_lapsed = time_difference.total_seconds()
+        print(time_difference)
 
-        ticket_response_time = response_time_in_seconds - creation_time_in_seconds
 
         ticket_priority = row['Ticket Priority']
-    
         if first_response_time:
             if ticket_priority == 'Critical':
-
-                tickets_first_response_time += ticket_response_time
+                tickets_first_response_time += seconds_lapsed
                 tickets_count +=1
         
     if tickets_count > 0:
