@@ -179,7 +179,7 @@ def average_first_response_time(dataset):
 
         time_difference = parsed_first_response_time - parsed_when_ticket_was_created
         seconds_lapsed = time_difference.total_seconds()
-        print(time_difference)
+
 
 
         ticket_priority = row['Ticket Priority']
