@@ -51,12 +51,12 @@ def nine(b=None): #your code here
     else:
         return b(9)
 
-def plus(number): #your code here
+def plus(number): 
     return lambda x: x + number
     
-def minus(number): #your code here
+def minus(number): 
     return lambda x: x - number
-def times(number): #your code here
+def times(number): 
     return lambda x : x * number
-def divided_by(number): #your code here
+def divided_by(number): 
     return lambda x : x // number

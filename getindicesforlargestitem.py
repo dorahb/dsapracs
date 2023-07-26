@@ -19,9 +19,7 @@ def get_indices_of_largest_item(l):
             return indices
             
             """
-
-
-   
+    
     indices = []
     
     for (idx,item) in enumerate(l):
@@ -32,10 +30,7 @@ def get_indices_of_largest_item(l):
 
 
 
-
-
-
-            
+      
             
 TEST_CASES = [
     # Add more cases here if needed:

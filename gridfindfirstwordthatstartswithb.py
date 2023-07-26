@@ -8,8 +8,7 @@ def find_first_word_that_starts_with_b(grid):
             if item.lower().startswith('b'):
                 return item
 
-            
-            
+                       
 TEST_CASES = [
     # Add more cases here if needed:
     (

@@ -1,4 +1,11 @@
 def get_string(l):
+    for item in l:
+        if isinstance(item,str):
+         return item
+        elif isinstance(item,list):
+            return get_string(item)
+  
+    return None
     """
     Assume `l` is a list with a single element. That element can either be a string,
     or a list conforming to the same rules as l. Examples of valid lists include:
@@ -31,13 +38,7 @@ while True:
     if type(current_list) == str:
       return current_list'''
 
-for item in l:
-    if isinstance(item,str):
-        return item
-    elif isinstance(item,list):
-        return get_string(item)
-  
-return None
+
 
 
     
