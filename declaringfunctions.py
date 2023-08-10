@@ -1,16 +1,32 @@
 
 # DECLARING A FUNCTION
-def get_greeting(name):
+def get_hello(name):
  return f'Hi, {name}!'
+ 
+def get_goodbye(name):
+    return f'Goodbye, {name}!'
+    
+def print_greetings(names):
+    for name in names:
+        # print(name)
+        hello_message = get_hello(name)
+        goodbye_message = get_goodbye(name)
+        print(f"{hello_message} {goodbye_message}")
+        
+names = ['Bianca', 'Rye', 'Kamal', 'Jean']
+print_greetings(names)
+
+
+
 
 # CALLING A FUNCTION
 # Here, we call `get_greeting`, passing in `Bianca` as the
 # first argument. We assign the returned value to the variable
 # `result`.
-result = get_greeting('Bianca')
-# Print the result, so we can see what it is! 
-print(result)
-
+result = get_hello('Bianca')
+result2 = get_goodbye('Rye')
+# # Print the result, so we can see what it is! 
+# print(result,result2)
 
 # TASKS 
 # (1) Declare a function `get_goodbye` that takes a name and 
@@ -30,4 +46,5 @@ print(result)
 #
 # (6) Use your function `report_time` to see how long it takes to run `print_greetings` 
 # on the list of names provided above.
+
 
