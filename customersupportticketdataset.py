@@ -93,6 +93,7 @@ Ticket ID,When Created, Customer Name,Customer Email,Customer Age,Product Purcha
 
 def extract_customer_support_ticket(dataset):
     rows = dataset.strip().split('\n')
+    print(rows)
     title = rows[0]
     rest_of_data = rows[1:]
 
