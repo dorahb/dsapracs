@@ -45,7 +45,7 @@ def combine_lists_and_dict(*args, **kwargs): # NOTE: please update type signatur
             # print(combined_list)
             
     combined_list.extend(kwargs.values())
-    # print(combined_list)
+    print(combined_list)
     return combined_list
     
     
