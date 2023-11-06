@@ -27,4 +27,4 @@ def weekend_only(func):
 def the_weekend(day):
     print(f'Today is {day}')
 
-the_weekend(day="Friday") 
+the_weekend('Saturday') 
